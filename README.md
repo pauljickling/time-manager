@@ -6,17 +6,13 @@ This is a work in progress on a CLI time management tool written in Rust.
 
 `tm start {activity}` tracks time spent on designated activity
 
-`tm pause {activity}` pause tracking time spent on designated activity
+`tm stop {activity}` stops tracking time spent on designated activity
 
 `tm resume {activity}` resumes tracking time spent on designated activity
-
-`tm stop {activity}` stops tracking time spent on designated activity
 
 `tm summarize {activity}` creates a summary for a particular activity
 
 `tm summary {activity}` produces activity summary
-
-`tm edit {activity}` make time edits for a particular activity
 
 `tm time {activity}` produces amount of time spent on a particular activity
 
