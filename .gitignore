@@ -1,2 +1,3 @@
 /target
 **/*.rs.bk
+/activity_logs/sample.csv
