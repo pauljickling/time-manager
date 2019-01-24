@@ -15,3 +15,10 @@ struct Activity {
     summary: String,
     local: DateTime<Local>,
 }
+
+// csv writer function for new and existing files
+fn write_file(path: String, text: String) -> std::io::Result<()> {
+ 41     fs::write(path, text)?;
+ 42     Ok(())
+ 43 }
+
