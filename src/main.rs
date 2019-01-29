@@ -1,32 +1,29 @@
 use std::fs;
 use std::error::Error;
-use chrono::prelude::*;
 
 fn main() {
-    let local: DateTime<Local> = Local::now();
-    let mut name = String::from("this is a name");
-    let mut summary = String::from("this is a summary");
-    let activity = Activity {start, summary, local};
+    let mut name = String::from("programming");
+    let mut entries: Vec<String> = Vec::new();
+    let activity = Activity {name, entries};
 
-    println!("{} with the time {:?}", activity.name, activity.local);
+    println!("{} has the following entries: {:?}", activity.name, activity.entries);
     
 }
 
 struct Activity {
     name: String,
-    summary: String,
-    local: DateTime<Local>,
+    entries: Vec<String>,
 }
 
 // csv writer function for new and existing files
 fn write_file(path: String, text: String) -> std::io::Result<()> {
- 41     fs::write(path, text)?;
- 42     Ok(())
- 43 }
+    fs::write(path, text)?;
+    Ok(())
+}
 
- // read file contents and return Some or None
- 36 fn read(path: &String) -> Result<String, Box<dyn Error>> {
- 37     let contents = fs::read_to_string(path)?;
- 38     Ok(contents)
- 39 }
+// read file contents and return Some or None
+fn read(path: &String) -> Result<String, Box<dyn Error>> {
+    let contents = fs::read_to_string(path)?;
+    Ok(contents)
+}
 
