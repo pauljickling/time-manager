@@ -1,30 +1,39 @@
-use std::io;
+// TODO use std::io;
 use std::fs;
 use std::error::Error;
 use std::process::Command;
 
+mod action {
+    pub enum Action {
+        Start,
+        Stop,
+        Resume,
+    }
+}
+
 fn main() {
-    let name = String::from("programming");
-    let mut entries: Vec<String> = Vec::new();
-    entries.push(String::from("start"));
-    entries.push(String::from(get_date()));
-    entries.push(String::from("stop"));
-    entries.push(String::from(get_date()));
-    let activity = Activity {name, entries};
-
-    println!("{} has the following entries: {:?}", activity.name, activity.entries);
+    println!("Date test");
+    let date = get_date();
+    let date2 = date.clone();
+    println!("{}", date);
     
+    println!("Read test");
+    let path = String::from("activity_logs/sample.csv");
+    let content = read(&path);
+    println!("{:?}", content);
+    
+    println!("Struct test");
+    let activity = String::from("sample task");
+    let action = action::Action::Start;
+    let record = Record {activity, action, date};
+    assert_eq!(record.activity, "sample task");
+    assert_eq!(record.date, date2);
 }
 
-struct Activity {
-    name: String,
-    entries: Vec<String>,
-}
-
-enum Action {
-    Start(String),
-    Stop(String),
-    Resume(String)
+struct Record {
+    activity: String,
+    action: action::Action,
+    date: String,
 }
 
 // csv writer function for new and existing files
