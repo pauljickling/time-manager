@@ -21,6 +21,12 @@ struct Activity {
     entries: Vec<String>,
 }
 
+enum Action {
+    Start(String),
+    Stop(String),
+    Resume(String)
+}
+
 // csv writer function for new and existing files
 fn _write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
