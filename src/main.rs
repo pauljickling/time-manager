@@ -1,9 +1,12 @@
+use std::io;
 use std::fs;
 use std::error::Error;
 
 fn main() {
-    let mut name = String::from("programming");
+    let name = String::from("programming");
     let mut entries: Vec<String> = Vec::new();
+    entries.push(String::from("start"));
+    entries.push(String::from("stop"));
     let activity = Activity {name, entries};
 
     println!("{} has the following entries: {:?}", activity.name, activity.entries);
@@ -16,7 +19,7 @@ struct Activity {
 }
 
 // csv writer function for new and existing files
-fn write_file(path: String, text: String) -> std::io::Result<()> {
+fn _write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
     Ok(())
 }
