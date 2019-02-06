@@ -3,11 +3,12 @@ use std::fs;
 use std::error::Error;
 use std::process::Command;
 
+// TODO match expression that adds string to Record if valid variant, else err
 mod action {
     pub enum Action {
-        Start,
-        Stop,
-        Resume,
+        Start(String),
+        Stop(String),
+        Resume(String),
     }
 }
 
@@ -24,7 +25,7 @@ fn main() {
     
     println!("Struct test");
     let activity = String::from("sample task");
-    let action = action::Action::Start;
+    let action = action::Action::Start(String::from("start"));
     let record = Record {activity, action, date};
     assert_eq!(record.activity, "sample task");
     assert_eq!(record.date, date2);
