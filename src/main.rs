@@ -4,15 +4,14 @@ use std::error::Error;
 use std::process::Command;
 
 // TODO match expression that adds string to Record if valid variant, else err
-mod action {
-    pub enum Action {
-        Start(String),
-        Stop(String),
-        Resume(String),
-    }
+enum Action {
+    Start,
+    Stop,
+    Resume,
 }
 
 fn main() {
+    use Action::*;
     println!("Date test");
     let date = get_date();
     let date2 = date.clone();
@@ -25,7 +24,7 @@ fn main() {
     
     println!("Struct test");
     let activity = String::from("sample task");
-    let action = action::Action::Start(String::from("start"));
+    let action = Start;
     let record = Record {activity, action, date};
     assert_eq!(record.activity, "sample task");
     assert_eq!(record.date, date2);
@@ -33,7 +32,7 @@ fn main() {
 
 struct Record {
     activity: String,
-    action: action::Action,
+    action: Action,
     date: String,
 }
 
