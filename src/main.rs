@@ -1,4 +1,5 @@
 // TODO use std::io;
+#![allow(dead_code)]
 use std::fs;
 use std::error::Error;
 use std::process::Command;
