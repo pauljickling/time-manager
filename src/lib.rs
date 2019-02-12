@@ -19,7 +19,6 @@ pub fn get_date() -> String {
     let output = Command::new("date")
                           .output()
                           .expect("Failed to execute command");  
-
     let date_seq = output.stdout.as_slice();
     let mut date = String::new();
     for c in date_seq {
@@ -35,13 +34,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn fail_test() {
-        assert_eq!(true, false);
+    fn test_read() {
+        println!("Read test");
+        let path = String::from("activity_logs/sample.csv");
+        let content = read(&path);
+        println!("{:?}", content);
     }
 
     #[test]
     fn test_write_file() {
-        assert_eq!(true, false)
+        assert_eq!(true, false);
     }
 
     #[test]

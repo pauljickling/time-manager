@@ -1,6 +1,6 @@
 // TODO use std::io;
 #![allow(dead_code)]
-use tm::{read, get_date};
+use tm::get_date;
 
 enum Action {
     Start,
@@ -10,15 +10,12 @@ enum Action {
 
 fn main() {
     use Action::*;
-
-    println!("Read test");
-    let path = String::from("activity_logs/sample.csv");
-    let content = read(&path);
-    println!("{:?}", content);
     
     println!("Struct test");
     let activity = String::from("sample task");
     let action = Start;
+    let date = get_date();
+    let date2 = date.clone();
     let action_match = match action {
         Action::Start => String::from("start"),
         Action::Stop => String::from("stop"),
