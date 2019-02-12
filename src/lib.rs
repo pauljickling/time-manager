@@ -41,16 +41,11 @@ mod tests {
 
     #[test]
     fn test_write_file() {
-        assert!(false)
-    }
-
-    #[test]
-    fn test_read() {
-        assert!(false)
+        assert_eq!(true, false)
     }
 
     #[test]
     fn test_get_date() {
-        assert!(false)
+        assert_eq!(true, false)
     }
 }
