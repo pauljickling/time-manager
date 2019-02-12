@@ -46,6 +46,7 @@ mod tests {
 
     #[test]
     fn test_get_date() {
-        assert_eq!(true, false)
+        let date = get_date();
+        assert_eq!(date, get_date());
     }
 }

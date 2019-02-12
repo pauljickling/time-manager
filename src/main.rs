@@ -10,11 +10,7 @@ enum Action {
 
 fn main() {
     use Action::*;
-    println!("Date test");
-    let date = get_date();
-    let date2 = date.clone();
-    println!("{}", date);
-    
+
     println!("Read test");
     let path = String::from("activity_logs/sample.csv");
     let content = read(&path);
