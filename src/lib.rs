@@ -41,6 +41,7 @@ pub fn get_date() -> String {
     date
 }
 
+// TODO write meaningful tests for test_read() test_write_file() and test_get_date()
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -62,5 +63,21 @@ mod tests {
     fn test_get_date() {
         let date = get_date();
         assert_eq!(date, get_date());
+    }
+    #[test]
+    fn test_struct() {
+        let activity = String::from("sample task");
+        let action = Action::Resume;
+        let date = get_date();
+        let date2 = date.clone();
+        let action_match = match action {
+            Action::Start => String::from("start"),
+            Action::Stop => String::from("stop"),
+            Action::Resume => String::from("resume"),
+        };
+        let record = Record {activity, action_match, date};
+        assert_eq!(record.activity, String::from("sample task"));
+        assert_eq!(record.action_match, "resume");
+        assert_eq!(record.date, date2);
     }
 }
