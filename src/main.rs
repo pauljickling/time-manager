@@ -34,7 +34,14 @@ fn main() {
         if activity == "" {
             println!("Activity must be specified");
         } else {
-            println!("{}, {}, {}\n", activity, action, get_date());
+            let separator = ", ";
+            let mut record = String::new();
+            record.push_str(&activity);
+            record.push_str(separator);
+            record.push_str(&action);
+            record.push_str(separator);
+            record.push_str(&get_date());
+            println!("{}", record);
         }
     } else {
         println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
