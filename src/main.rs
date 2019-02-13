@@ -3,10 +3,9 @@
  * 2. activity string: used to record to csv
  */
 
-#![allow(dead_code)]
 use std::env;
 use std::collections::HashSet;
-// TODO use tm::{get_date, Record, Action};
+use tm::{get_date};
 
 fn main() {
     /* Probably not the best way to implement this HashSet, but everything else I did created
@@ -18,7 +17,7 @@ fn main() {
 
     // env parameters
     let action_arg = env::args().nth(1);
-    let _activity_arg = env::args().nth(2);
+    let activity_arg = env::args().nth(2);
     
     // TODO tm should complain if None
     let action = match action_arg {
@@ -26,8 +25,17 @@ fn main() {
         None => "none".to_string(),
     };
 
+    let activity = match activity_arg {
+        Some(x) => x.to_string(),
+        None => "".to_string(),
+    };
+
     if actions.contains(&action) {
-        println!("{}", action);
+        if activity == "" {
+            println!("Activity must be specified");
+        } else {
+            println!("{}, {}, {}\n", activity, action, get_date());
+        }
     } else {
         println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
     }
