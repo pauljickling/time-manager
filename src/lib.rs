@@ -2,6 +2,18 @@ use std::fs;
 use std::error::Error;
 use std::process::Command;
 
+pub struct Record {
+    pub activity: String,
+    pub action_match: String,
+    pub date: String,
+}
+
+pub enum Action {
+    Start,
+    Stop,
+    Resume,
+}
+
 // csv writer function for new and existing files
 pub fn _write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;

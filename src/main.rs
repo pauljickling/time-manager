@@ -1,12 +1,6 @@
 // TODO use std::io;
 #![allow(dead_code)]
-use tm::get_date;
-
-enum Action {
-    Start,
-    Stop,
-    Resume,
-}
+use tm::{get_date, Record, Action};
 
 fn main() {
     use Action::*;
@@ -26,10 +20,4 @@ fn main() {
     assert_eq!(record.activity, "sample task");
     assert_eq!(record.action_match, "start");
     assert_eq!(record.date, date2);
-}
-
-struct Record {
-    activity: String,
-    action_match: String,
-    date: String,
 }
