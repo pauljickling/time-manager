@@ -38,7 +38,7 @@ pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
     Ok(contents)
     }
 
-// gets date string from terminal
+// gets date string from terminal. Used for sake of human readability in file.
 pub fn get_date() -> String {
     let output = Command::new("date")
                           .output()
@@ -51,6 +51,24 @@ pub fn get_date() -> String {
         }
     }
     date
+}
+
+// gets Unix timestamp. Used for ease of calculations.
+pub fn get_unix_timestamp() -> u32 {
+    let output = Command::new("date")
+                          .arg("+%s")
+                          .output()
+                          .expect("Failed to execute command");
+    let time_seq = output.stdout.as_slice();
+    let mut time_str = String::new();
+    for c in time_seq {
+        if c.is_ascii() == true {
+            time_str.push(*c as char);
+        }
+    }
+    let time_splice = &time_str[0..10];
+    let time = time_splice.parse::<u32>().unwrap();
+    time
 }
 
 // TODO write meaningful tests for test_read() test_write_file() and test_get_date()
