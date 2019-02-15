@@ -5,9 +5,14 @@
 
 use std::env;
 use std::collections::HashSet;
-use tm::{get_date, get_unix_time};
+
+use tm::{get_date, get_unix_time, read};
 
 fn main() {
+    let csv_path = String::from("activity_logs/sample.csv");
+    let mut csv_content = read(&csv_path).unwrap();
+    println!("{}", csv_content);
+
     /* Not ideal for this HashSet to be mutable, but everything else I did created
     string comparison errors. */
     let mut actions = HashSet::new();
@@ -45,7 +50,8 @@ fn main() {
             record.push_str(&get_unix_time());
             record.push_str(separator);
             record.push_str("0");
-            println!("{}", record);
+            csv_content.push_str(&record);
+            println!("{}", csv_content);
         }
     } else {
         println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
