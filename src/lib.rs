@@ -42,7 +42,7 @@ pub fn get_date() -> String {
 }
 
 // gets Unix timestamp. Used for ease of calculations.
-pub fn get_unix_timestamp() -> u32 {
+pub fn get_unix_time() -> String {
     let output = Command::new("date")
                           .arg("+%s")
                           .output()
@@ -54,8 +54,15 @@ pub fn get_unix_timestamp() -> u32 {
             time_str.push(*c as char);
         }
     }
-    let time_splice = &time_str[0..10];
-    let time = time_splice.parse::<u32>().unwrap();
+    time_str
+}
+
+// calculates hours for time
+pub fn calc_time(base: String, stop: String) -> f32 {
+    let base_time = base.parse::<u32>().unwrap();
+    let stop_time = stop.parse::<u32>().unwrap();
+    let secs = stop_time - base_time;
+    let time = secs as f32;
     time
 }
 

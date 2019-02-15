@@ -5,7 +5,7 @@
 
 use std::env;
 use std::collections::HashSet;
-use tm::{get_date};
+use tm::{get_date, get_unix_time};
 
 fn main() {
     /* Probably not the best way to implement this HashSet, but everything else I did created
@@ -41,6 +41,7 @@ fn main() {
             record.push_str(&action);
             record.push_str(separator);
             record.push_str(&get_date());
+            record.push_str(&get_unix_time());
             println!("{}", record);
         }
     } else {
