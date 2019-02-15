@@ -14,13 +14,30 @@ pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
     Ok(contents)
     }
 
-// TODO figure out how csv parser should work 
-pub fn parse_csv(contents: &String) -> Vec<char> {
-    let mut parsed = Vec::new();
-    for i in contents.chars() {
-        parsed.push(i);
+// takes string of csv file and returns a vec for each item 
+pub fn parse_csv(src: String) -> Vec<String> {
+    let mut item = String::new();
+    let mut output = Vec::new();
+    let mut skip = false;
+    for c in src.chars() {
+        if c != ',' {
+            if skip == true {
+                skip = false;
+            } else {
+                if c != '\n' {
+                    item.push(c);
+                } else {
+                    output.push(item);
+                    item = String::from("");
+                }
+            }
+        } else {
+            output.push(item);
+            skip = true;
+            item = String::from("");
+        }
     }
-    parsed
+    output
 }
 
 // gets date string from terminal. Used for sake of human readability in file.
