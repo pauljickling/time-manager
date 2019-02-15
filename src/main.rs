@@ -6,7 +6,7 @@
 use std::env;
 use std::collections::HashSet;
 
-use tm::{get_date, get_unix_time, read};
+use tm::{get_date, get_unix_time, read, write_file};
 
 fn main() {
     let csv_path = String::from("activity_logs/sample.csv");
@@ -49,9 +49,12 @@ fn main() {
             record.push_str(separator);
             record.push_str(&get_unix_time());
             record.push_str(separator);
-            record.push_str("0");
+            // TODO handle calculation
+            record.push_str("0\n");
             csv_content.push_str(&record);
             println!("{}", csv_content);
+            // TODO use _check_file to handle errors
+            let _check_file = write_file(csv_path, csv_content);
         }
     } else {
         println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
