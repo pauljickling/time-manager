@@ -41,6 +41,7 @@ fn main() {
             record.push_str(&action);
             record.push_str(separator);
             record.push_str(&get_date());
+            record.push_str(separator);
             record.push_str(&get_unix_time());
             println!("{}", record);
         }

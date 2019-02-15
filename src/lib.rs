@@ -38,7 +38,9 @@ pub fn get_date() -> String {
             date.push(*c as char);
         }
     }
-    date
+    let date_slice = &date[0..28];
+    let return_str = String::from(date_slice);
+    return_str
 }
 
 // gets Unix timestamp. Used for ease of calculations.
