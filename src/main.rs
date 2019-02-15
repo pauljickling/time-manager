@@ -8,7 +8,7 @@ use std::collections::HashSet;
 use tm::{get_date, get_unix_time};
 
 fn main() {
-    /* Probably not the best way to implement this HashSet, but everything else I did created
+    /* Not ideal for this HashSet to be mutable, but everything else I did created
     string comparison errors. */
     let mut actions = HashSet::new();
     actions.insert("start".to_string());
