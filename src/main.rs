@@ -43,6 +43,8 @@ fn main() {
             record.push_str(&get_date());
             record.push_str(separator);
             record.push_str(&get_unix_time());
+            record.push_str(separator);
+            record.push_str("0");
             println!("{}", record);
         }
     } else {

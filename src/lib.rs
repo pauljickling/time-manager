@@ -14,21 +14,30 @@ pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
     Ok(contents)
     }
 
+// TODO figure out how csv parser should work 
+pub fn parse_csv(contents: &String) -> Vec<char> {
+    let mut parsed = Vec::new();
+    for i in contents.chars() {
+        parsed.push(i);
+    }
+    parsed
+}
+
 // gets date string from terminal. Used for sake of human readability in file.
 pub fn get_date() -> String {
     let output = Command::new("date")
                           .output()
                           .expect("Failed to execute command");  
     let date_seq = output.stdout.as_slice();
-    let mut date = String::new();
+    let mut date_str = String::new();
     for c in date_seq {
         if c.is_ascii() == true {
-            date.push(*c as char);
+            date_str.push(*c as char);
         }
     }
-    let date_slice = &date[0..28];
-    let return_str = String::from(date_slice);
-    return_str
+    let date_slice = &date_str[0..28];
+    let date = String::from(date_slice);
+    date
 }
 
 // gets Unix timestamp. Used for ease of calculations.
@@ -44,7 +53,9 @@ pub fn get_unix_time() -> String {
             time_str.push(*c as char);
         }
     }
-    time_str
+    let time_slice = &time_str[0..10];
+    let time = String::from(time_slice);
+    time
 }
 
 // calculates hours for time
