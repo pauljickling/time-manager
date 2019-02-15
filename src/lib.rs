@@ -8,7 +8,7 @@ pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     Ok(())
 }
 
-// read file contents and return Some or None
+// read file contents and returns a Result
 pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
     let contents = fs::read_to_string(path)?;
     Ok(contents)
