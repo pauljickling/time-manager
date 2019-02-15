@@ -3,7 +3,7 @@ use std::error::Error;
 use std::process::Command;
 
 // csv writer function for new and existing files
-pub fn _write_file(path: String, text: String) -> std::io::Result<()> {
+pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
     Ok(())
 }
@@ -14,7 +14,14 @@ pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
     Ok(contents)
     }
 
-// takes string of csv file and returns a vec for each item 
+/* 
+ * takes string of csv file and returns a vec for each item
+ * The control flow for this is tedious and complicated.
+ * It implements the following rules:
+ * 1. assumes that entries contain no commas (i.e. they are delimiters)
+ * 2. ignores spaces after commas
+ * 3. also treats newline escape characters as delimiters
+ */
 pub fn parse_csv(src: String) -> Vec<String> {
     let mut item = String::new();
     let mut output = Vec::new();
