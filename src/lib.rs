@@ -14,18 +14,6 @@ pub enum Action {
     Resume,
 }
 
-// date parser adds up hours
-pub fn _date_parser(date: String) -> String { 
-    let _month = &date[4..8];
-    let _day = &date[8..10];
-    let _hour = &date[10..13];
-    let _minute = &date[14..16];
-    let _year = &date[24..28];
-    let _hour_float: f32 = _hour.parse().unwrap();
-    let mut hours = 0.0;
-    hours = hours + _hour_float;
-    hours.to_string()
-}
 // csv writer function for new and existing files
 pub fn _write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
@@ -109,9 +97,5 @@ mod tests {
         assert_eq!(record.activity, String::from("sample task"));
         assert_eq!(record.action_match, "resume");
         assert_eq!(record.date, date2);
-    }
-    #[test]
-    fn test_date_parser() {
-        assert_eq!(true, false);
     }
 }
