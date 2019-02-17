@@ -91,6 +91,23 @@ pub fn calc_time(base: String, stop: String) -> f32 {
     time
 }
 
+// create record
+pub fn create_record(action: &String, activity: &String) -> String {
+    let delimiter = ", ";
+    let mut record = String::new();
+    record.push_str(activity);
+    record.push_str(delimiter);
+    record.push_str(action);
+    record.push_str(delimiter);
+    record.push_str(&get_date());
+    record.push_str(delimiter);
+    record.push_str(&get_unix_time());
+    record.push_str(delimiter);
+    // TODO handle calculation
+    record.push_str("0\n");
+    record
+}
+
 // TODO write meaningful tests for test_read() test_write_file() and test_get_date()
 #[cfg(test)]
 mod tests {

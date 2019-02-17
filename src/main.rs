@@ -39,18 +39,7 @@ fn main() {
         if activity == "" {
             println!("Activity must be specified");
         } else {
-            let separator = ", ";
-            let mut record = String::new();
-            record.push_str(&activity);
-            record.push_str(separator);
-            record.push_str(&action);
-            record.push_str(separator);
-            record.push_str(&get_date());
-            record.push_str(separator);
-            record.push_str(&get_unix_time());
-            record.push_str(separator);
-            // TODO handle calculation
-            record.push_str("0\n");
+            let record = create_record(&action, &activity);
             csv_content.push_str(&record);
             // println!("{}", csv_content);
             let csv_vec = parse_csv(csv_content);
@@ -75,7 +64,9 @@ fn main() {
                     counter += 1;
                 }
             }
-            println!("{:?}", activity_map);
+            if Some(&action) == activity_map.get(&activity) {
+                println!("{} is already the current action for {}", action, activity);
+            } 
             // TODO use _check_file to handle errors
             // let _check_file = write_file(csv_path, csv_content);
         }
