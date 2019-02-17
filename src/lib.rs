@@ -86,11 +86,11 @@ pub fn get_unix_time() -> String {
 }
 
 // TODO calculate correct unit of time
-pub fn calc_time(base: String, stop: String) -> f32 {
+pub fn calc_time(base: String, stop: String) -> f64 {
     let base_time = base.parse::<u32>().unwrap();
     let stop_time = stop.parse::<u32>().unwrap();
     let secs = stop_time - base_time;
-    let time = secs as f32;
+    let time = secs as f64;
     time
 }
 
