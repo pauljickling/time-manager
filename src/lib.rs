@@ -25,7 +25,7 @@ pub fn read(path: &String) -> String {
  * 2. ignores spaces after commas
  * 3. also treats newline escape characters as delimiters
  */
-pub fn parse_csv(src: String) -> Vec<String> {
+pub fn parse_csv(src: &String) -> Vec<String> {
     let mut item = String::new();
     let mut output = Vec::new();
     let mut skip = false;
