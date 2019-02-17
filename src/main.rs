@@ -28,7 +28,16 @@ fn main() {
     let csv_path = format!("activity_logs/{}.csv", activity);
     let mut csv_content = read(&csv_path);
     let csv_vec = parse_csv(&csv_content);
-    println!("{:?}", csv_vec);
+
+    // check if valid start command
+    if csv_vec.len() > 4 {
+        if action == "start" {
+            panic!("Cannot start existing activity");
+        }
+    }
+    // last action helps figure out how the program should handle the user request
+    let last_action = &csv_vec[csv_vec.len() - 4];
+    println!("{}", last_action); 
 
     /* Not ideal for this HashSet to be mutable, but everything else I did created
     string comparison errors. */

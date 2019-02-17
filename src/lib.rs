@@ -7,7 +7,7 @@ pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     Ok(())
 }
 
-// read file contents and returns a Result
+// read file contents and returns contents or new contents
 pub fn read(path: &String) -> String {
     let contents = fs::read_to_string(path);
     let file = match contents {
