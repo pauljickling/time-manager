@@ -92,11 +92,9 @@ pub fn calc_time(base: String, stop: String) -> f32 {
 }
 
 // create record
-pub fn create_record(action: &String, activity: &String) -> String {
+pub fn create_record(action: &String) -> String {
     let delimiter = ", ";
     let mut record = String::new();
-    record.push_str(activity);
-    record.push_str(delimiter);
     record.push_str(action);
     record.push_str(delimiter);
     record.push_str(&get_date());

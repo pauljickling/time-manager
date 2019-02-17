@@ -9,17 +9,7 @@ use std::collections::{HashSet, HashMap};
 use tm::*;
 
 fn main() {
-    let csv_path = String::from("activity_logs/sample.csv");
-    let mut csv_content = read(&csv_path).unwrap();
-    // println!("{}", csv_content);
-
-    /* Not ideal for this HashSet to be mutable, but everything else I did created
-    string comparison errors. */
-    let mut action_set = HashSet::new();
-    action_set.insert("start".to_string());
-    action_set.insert("stop".to_string());
-    action_set.insert("resume".to_string());
-
+    
     // env parameters
     let action_arg = env::args().nth(1);
     let activity_arg = env::args().nth(2);
@@ -33,10 +23,21 @@ fn main() {
         Some(x) => x.to_string(),
         None => panic!("activity not specified"),
     };
+
+    let csv_path = format!("activity_logs/{}.csv", activity);
+    let mut csv_content = read(&csv_path).unwrap();
+    // println!("{}", csv_content);
+
+    /* Not ideal for this HashSet to be mutable, but everything else I did created
+    string comparison errors. */
+    let mut action_set = HashSet::new();
+    action_set.insert("start".to_string());
+    action_set.insert("stop".to_string());
+    action_set.insert("resume".to_string());
     
     // checks to make sure a valid action happens, then does a bunch of stuff
     if action_set.contains(&action) {
-        let record = create_record(&action, &activity);
+        let record = create_record(&action);
         csv_content.push_str(&record);
         // println!("{}", csv_content);
         let csv_vec = parse_csv(csv_content);
@@ -45,7 +46,7 @@ fn main() {
         let mut activity_map = HashMap::new();
         let mut current_key = String::new();
         for i in csv_vec {
-            if counter == 11 {
+            if counter == 10 {
                 counter = 1;
             }
             if counter == 1 {
@@ -55,7 +56,7 @@ fn main() {
                 activity_map.insert(current_key, i.clone());
                 current_key = String::from("");
             }
-            if counter == 5 {
+            if counter == 4 {
                 counter = 1;
             } else {
                 counter += 1;
