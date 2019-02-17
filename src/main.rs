@@ -15,10 +15,10 @@ fn main() {
 
     /* Not ideal for this HashSet to be mutable, but everything else I did created
     string comparison errors. */
-    let mut actions = HashSet::new();
-    actions.insert("start".to_string());
-    actions.insert("stop".to_string());
-    actions.insert("resume".to_string());
+    let mut action_set = HashSet::new();
+    action_set.insert("start".to_string());
+    action_set.insert("stop".to_string());
+    action_set.insert("resume".to_string());
 
     // env parameters
     let action_arg = env::args().nth(1);
@@ -33,8 +33,9 @@ fn main() {
         Some(x) => x.to_string(),
         None => panic!("activity not specified"),
     };
-
-    if actions.contains(&action) {
+    
+    // checks to make sure a valid action happens, then does a bunch of stuff
+    if action_set.contains(&action) {
         let record = create_record(&action, &activity);
         csv_content.push_str(&record);
         // println!("{}", csv_content);
