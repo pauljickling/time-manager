@@ -23,16 +23,15 @@ fn main() {
     // env parameters
     let action_arg = env::args().nth(1);
     let activity_arg = env::args().nth(2);
-    
-    // TODO tm should complain if None
+     
     let action = match action_arg {
         Some(x) => x.to_string(),
-        None => "none".to_string(),
+        None => panic!("action not specified"),
     };
 
     let activity = match activity_arg {
         Some(x) => x.to_string(),
-        None => "".to_string(),
+        None => panic!("activity not specified"),
     };
 
     if actions.contains(&action) {
