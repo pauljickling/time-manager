@@ -25,7 +25,7 @@ fn main() {
     };
 
     let csv_path = format!("activity_logs/{}.csv", activity);
-    let mut csv_content = read(&csv_path).unwrap();
+    let mut csv_content = read(&csv_path);
     // println!("{}", csv_content);
 
     /* Not ideal for this HashSet to be mutable, but everything else I did created
@@ -39,7 +39,7 @@ fn main() {
     if action_set.contains(&action) {
         let record = create_record(&action);
         csv_content.push_str(&record);
-        // println!("{}", csv_content);
+        println!("{}", csv_content);
         let csv_vec = parse_csv(csv_content);
         // counter initially set to 6 as a silly hack to skip the header line
         let mut counter = 6;

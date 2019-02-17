@@ -1,5 +1,4 @@
 use std::fs;
-use std::error::Error;
 use std::process::Command;
 
 // csv writer function for new and existing files
@@ -9,10 +8,14 @@ pub fn write_file(path: String, text: String) -> std::io::Result<()> {
 }
 
 // read file contents and returns a Result
-pub fn read(path: &String) -> Result<String, Box<dyn Error>> {
-    let contents = fs::read_to_string(path)?;
-    Ok(contents)
-    }
+pub fn read(path: &String) -> String {
+    let contents = fs::read_to_string(path);
+    let file = match contents {
+        Ok(x) => x,
+        _ => String::from("action, date/time stamp, unix time, hours\n"),
+    };
+    file
+}
 
 /* 
  * takes string of csv file and returns a vec for each item
