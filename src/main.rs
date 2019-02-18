@@ -1,8 +1,3 @@
-/* tm accepts the following:
- * 1. action parameters: "start", "stop", and "resume" are valid terms.
- * 2. activity string: used to record csv file with that name
- */
-
 use std::env;
 use std::collections::HashSet;
 
@@ -62,7 +57,6 @@ fn main() {
         let record = create_record(&action, &base_time, &base_hours);
         csv_content.push_str(&record);
         println!("{}", csv_content);
-
     } else {
         println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
     }

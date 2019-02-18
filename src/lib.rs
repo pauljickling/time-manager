@@ -95,7 +95,7 @@ pub fn calc_time(base: String, stop: String) -> f64 {
     time
 }
 
-// create record
+// create record that automatically updates hours spent on activity
 pub fn create_record(action: &String, base_time: &String, base_hours: &String) -> String {
     let delimiter = ", ";
     let mut record = String::new();
