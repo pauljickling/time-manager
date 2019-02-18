@@ -37,7 +37,9 @@ fn main() {
     }
     // last action helps figure out how the program should handle the user request
     let last_action = &csv_vec[csv_vec.len() - 4];
-    println!("{}", last_action); 
+    if last_action == &action {
+        panic!("Last action must be different from current action");
+    }
 
     /* Not ideal for this HashSet to be mutable, but everything else I did created
     string comparison errors. */
