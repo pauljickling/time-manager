@@ -35,11 +35,13 @@ fn main() {
             panic!("For new activity action must be start");
         }
     }
+
     if csv_vec.len() > 4 {
         if action == "start" {
             panic!("Cannot start existing activity");
         }
     }
+
     // last action helps figure out how the program should handle the user request
     let last_action = &csv_vec[csv_vec.len() - 4];
     if last_action == &action {
