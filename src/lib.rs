@@ -128,7 +128,7 @@ mod tests {
         let base= String::from("360");
         let stop = String::from("720");
         let time = calc_time(base, stop);
-        assert_eq!("0.1", time);
+        assert_eq!(0.1, time);
     }
     #[test]
     fn test_read() {
