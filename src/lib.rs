@@ -117,6 +117,13 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_calc_time() {
+        let base= String::from("360");
+        let stop = String::from("720");
+        let time = calc_time(base, stop);
+        assert_eq!("0.1", time);
+    }
+    #[test]
     fn test_read() {
         println!("Read test");
         let path = String::from("activity_logs/sample.csv");
