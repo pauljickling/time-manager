@@ -107,13 +107,16 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
     let unix_time = get_unix_time();
     record.push_str(&unix_time);
     record.push_str(delimiter);
+    if action == "start" {
+        record.push_str("0\n");
+    }
     if action == "stop" {
         let base_int = base_hours.parse::<f64>().unwrap();
         let hours = calc_time(base_time.to_string(), unix_time);
         let total_hours = base_int + hours;
         let total_hours_str = format!("{:.1}\n", total_hours);
         record.push_str(&total_hours_str);
-    } else {
+    } if action == "resume" {
         let base_hours_str = format!("{}\n", base_hours);
         record.push_str(&base_hours_str);
     }
