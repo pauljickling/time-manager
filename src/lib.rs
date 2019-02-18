@@ -1,14 +1,16 @@
 use std::fs;
 use std::process::Command;
 
-// csv writer function for new and existing files
+/// Used for writing a CSV file using the provided path and text
 pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
     Ok(())
 }
 
-// read file contents and returns contents or new contents
-pub fn read(path: &String) -> String {
+/// Reads file contents from path and either:
+/// 1. Returns contents as a String
+/// 2. If file not found creates header for new file to be written
+pub fn read_file(path: &String) -> String {
     let contents = fs::read_to_string(path);
     let file = match contents {
         Ok(x) => x,
@@ -17,14 +19,13 @@ pub fn read(path: &String) -> String {
     file
 }
 
-/* 
- * takes string of csv file and returns a vec for each item
- * The control flow for this is tedious and complicated.
- * It implements the following rules:
- * 1. assumes that entries contain no commas (i.e. they are delimiters)
- * 2. ignores spaces after commas
- * 3. also treats newline escape characters as delimiters
- */
+
+/// Takes string of CSV file and returns a vec for each item.
+/// The control flow for this is deeply nested and tedious. The purpose is to accomplish the
+/// following:
+/// 1. Treat commas as delimiters
+/// 2. Ignores the space after a comma
+/// 3. Treats newline escape characters as delimiters
 pub fn parse_csv(src: &String) -> Vec<String> {
     let mut item = String::new();
     let mut output = Vec::new();
@@ -50,7 +51,7 @@ pub fn parse_csv(src: &String) -> Vec<String> {
     output
 }
 
-// gets date string from terminal. Used for sake of human readability in file.
+/// Gets date string from terminal. Provided for human readability in file.
 pub fn get_date() -> String {
     let output = Command::new("date")
                           .output()
@@ -67,7 +68,7 @@ pub fn get_date() -> String {
     date
 }
 
-// gets Unix timestamp. Used for ease of calculations.
+/// Gets Unix timestamp. Used for ease of calculations.
 pub fn get_unix_time() -> String {
     let output = Command::new("date")
                           .arg("+%s")
@@ -85,7 +86,7 @@ pub fn get_unix_time() -> String {
     time
 }
 
-// calculates time of tenth of an hour
+/// Calculates time down to tenth of an hour (i.e. 6 minute intervals)
 pub fn calc_time(base: String, stop: String) -> f64 {
     let base_time = base.parse::<f64>().unwrap();
     let stop_time = stop.parse::<f64>().unwrap();
@@ -95,7 +96,7 @@ pub fn calc_time(base: String, stop: String) -> f64 {
     time
 }
 
-// create record that automatically updates hours spent on activity
+/// Create record that automatically updates hours spent on activity
 pub fn create_record(action: &String, base_time: &String, base_hours: &String) -> String {
     let delimiter = ", ";
     let mut record = String::new();

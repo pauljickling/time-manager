@@ -21,7 +21,7 @@ fn main() {
 
     // read csv file (or create a new header to be written if no file exists)
     let csv_path = format!("activity_logs/{}.csv", activity);
-    let mut csv_content = read(&csv_path);
+    let mut csv_content = read_file(&csv_path);
     let csv_vec = parse_csv(&csv_content);
 
     // check valid start
