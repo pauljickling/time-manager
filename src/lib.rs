@@ -119,7 +119,7 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
     record
 }
 
-// TODO write meaningful tests for test_read() test_write_file() and test_get_date()
+// TODO write meaningful tests for functions performing file system manipulation
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -131,19 +131,6 @@ mod tests {
         let time = calc_time(base, stop);
         assert_eq!(0.1, time);
     }
-    #[test]
-    fn test_read() {
-        println!("Read test");
-        let path = String::from("activity_logs/sample.csv");
-        let content = read(&path);
-        println!("{:?}", content);
-    }
-
-    #[test]
-    fn test_write_file() {
-        assert_eq!(true, false);
-    }
-
     #[test]
     fn test_get_date() {
         let date = get_date();
