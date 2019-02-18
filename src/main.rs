@@ -29,7 +29,12 @@ fn main() {
     let mut csv_content = read(&csv_path);
     let csv_vec = parse_csv(&csv_content);
 
-    // check if valid start command
+    // check valid start
+    if csv_vec.len() == 4 {
+        if action != "start" {
+            panic!("For new activity action must be start");
+        }
+    }
     if csv_vec.len() > 4 {
         if action == "start" {
             panic!("Cannot start existing activity");
