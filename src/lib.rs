@@ -86,28 +86,35 @@ pub fn get_unix_time() -> String {
 }
 
 // calculates time of tenth of an hour
-pub fn calc_time(base: String, stop: String) -> String {
+pub fn calc_time(base: String, stop: String) -> f64 {
     let base_time = base.parse::<f64>().unwrap();
     let stop_time = stop.parse::<f64>().unwrap();
     let secs: f64 = stop_time - base_time;
     let mins: f64 = secs / 60.0;
-    let hours: f64 =  mins / 60.0;
-    let time = format!("{:.1}", hours);
+    let time: f64 =  mins / 60.0;
     time
 }
 
 // create record
-pub fn create_record(action: &String) -> String {
+pub fn create_record(action: &String, base_time: &String, base_hours: &String) -> String {
     let delimiter = ", ";
     let mut record = String::new();
     record.push_str(action);
     record.push_str(delimiter);
     record.push_str(&get_date());
     record.push_str(delimiter);
-    record.push_str(&get_unix_time());
+    let unix_time = get_unix_time();
+    record.push_str(&unix_time);
     record.push_str(delimiter);
-    // TODO handle calculation
-    record.push_str("0\n");
+    if action == "stop" {
+        let base_int = base_hours.parse::<f64>().unwrap();
+        let hours = calc_time(base_time.to_string(), unix_time);
+        let total_hours = base_int + hours;
+        let total_hours_str = format!("{:.1}\n", total_hours);
+        record.push_str(&total_hours_str);
+    } else {
+        record.push_str(base_hours);
+    }
     record
 }
 
