@@ -51,9 +51,9 @@ fn main() {
     action_set.insert("resume".to_string());
     
     // checks to make sure a valid action happens, then does a bunch of stuff
-    if action_set.contains(&action) {
+    if action_set.contains(&action) { 
         let base_time = &csv_vec[csv_vec.len() - 2];
-        let base_hours = &csv_vec[csv_vec.len() - 1];
+        let base_hours = &csv_vec[csv_vec.len() - 1]; 
         let record = create_record(&action, &base_time, &base_hours);
         csv_content.push_str(&record);
         println!("{}", csv_content);

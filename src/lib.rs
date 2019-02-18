@@ -114,7 +114,8 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
         let total_hours_str = format!("{:.1}\n", total_hours);
         record.push_str(&total_hours_str);
     } else {
-        record.push_str(base_hours);
+        let base_hours_str = format!("{}\n", base_hours);
+        record.push_str(&base_hours_str);
     }
     record
 }
