@@ -48,3 +48,7 @@ The csv files contain four fields:
 2. A time/date stamp
 3. A Unix timestamp
 4. Total hours spent on that activity
+
+## OS Support
+
+This program has been tested on Linux Ubuntu 18.04 LTS. It may not work on certain versions of Linux depending on pathing implementation details. Testing on OSX and Windows will be forthcoming.
