@@ -18,7 +18,7 @@ After you have installed, change into the directory and run:
 
 `cargo build --release`
 
-This will install an optimized build of the platform
+This will install an optimized build of the platform. Once you have done that go to the *target/release* folder and create a directory called *activity_logs*. Note that future versions of Time Manager will automatically create this directory.
 
 ### Create an Alias in your .bashrc File
 
