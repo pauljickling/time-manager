@@ -108,7 +108,7 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
     record.push_str(&unix_time);
     record.push_str(delimiter);
     if action == "start" {
-        record.push_str("0\n");
+        record.push_str("0.0\n");
     }
     if action == "stop" {
         let base_int = base_hours.parse::<f64>().unwrap();
