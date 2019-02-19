@@ -55,7 +55,7 @@ fn main() {
     action_set.insert("stop".to_string());
     action_set.insert("resume".to_string());
     
-    // checks to make sure a valid action happens, then does a bunch of stuff
+    // checks to make sure a valid action happens, then adds entry
     if action_set.contains(&action) { 
         let base_time = &csv_vec[csv_vec.len() - 2];
         let base_hours = &csv_vec[csv_vec.len() - 1]; 
