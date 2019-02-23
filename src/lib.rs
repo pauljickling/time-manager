@@ -19,7 +19,6 @@ pub fn read_file(path: &String) -> String {
     file
 }
 
-
 /// Takes string of CSV file and returns a vec for each item.
 /// The control flow for this is deeply nested and tedious. The purpose is to accomplish the
 /// following:
@@ -54,8 +53,8 @@ pub fn parse_csv(src: &String) -> Vec<String> {
 /// Gets date string from terminal. Provided for human readability in file.
 pub fn get_date() -> String {
     let output = Command::new("date")
-                          .output()
-                          .expect("Failed to execute command");  
+        .output()
+        .expect("Failed to execute command");
     let date_seq = output.stdout.as_slice();
     let mut date_str = String::new();
     for c in date_seq {
@@ -71,9 +70,9 @@ pub fn get_date() -> String {
 /// Gets Unix timestamp. Used for ease of calculations.
 pub fn get_unix_time() -> String {
     let output = Command::new("date")
-                          .arg("+%s")
-                          .output()
-                          .expect("Failed to execute command");
+        .arg("+%s")
+        .output()
+        .expect("Failed to execute command");
     let time_seq = output.stdout.as_slice();
     let mut time_str = String::new();
     for c in time_seq {
@@ -92,7 +91,7 @@ pub fn calc_time(base: String, stop: String) -> f64 {
     let stop_time = stop.parse::<f64>().unwrap();
     let secs: f64 = stop_time - base_time;
     let mins: f64 = secs / 60.0;
-    let time: f64 =  mins / 60.0;
+    let time: f64 = mins / 60.0;
     time
 }
 
@@ -116,7 +115,8 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
         let total_hours = base_int + hours;
         let total_hours_str = format!("{:.1}\n", total_hours);
         record.push_str(&total_hours_str);
-    } if action == "resume" {
+    }
+    if action == "resume" {
         let base_hours_str = format!("{}\n", base_hours);
         record.push_str(&base_hours_str);
     }
@@ -130,7 +130,7 @@ mod tests {
 
     #[test]
     fn test_calc_time() {
-        let base= String::from("360");
+        let base = String::from("360");
         let stop = String::from("720");
         let time = calc_time(base, stop);
         assert_eq!(0.1, time);
