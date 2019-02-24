@@ -1,14 +1,13 @@
-use std::env;
 use std::collections::HashSet;
+use std::env;
 
 use tm::*;
 
 fn main() {
-    
     // env parameters matched or else panic
     let action_arg = env::args().nth(1);
     let activity_arg = env::args().nth(2);
-     
+
     let action = match action_arg {
         Some(x) => x.to_string(),
         None => panic!("action not specified"),
@@ -54,16 +53,16 @@ fn main() {
     action_set.insert("start".to_string());
     action_set.insert("stop".to_string());
     action_set.insert("resume".to_string());
-    
+
     // checks to make sure a valid action happens, then adds entry
-    if action_set.contains(&action) { 
+    if action_set.contains(&action) {
         let base_time = &csv_vec[csv_vec.len() - 2];
-        let base_hours = &csv_vec[csv_vec.len() - 1]; 
+        let base_hours = &csv_vec[csv_vec.len() - 1];
         let record = create_record(&action, &base_time, &base_hours);
         csv_content.push_str(&record);
         println!("{}", csv_content);
         let _result_check = write_file(csv_path, csv_content);
     } else {
-        println!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
+        eprintln!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
     }
-} 
+}
