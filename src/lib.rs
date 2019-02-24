@@ -123,6 +123,17 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
     record
 }
 
+pub fn help_text() {
+    let help = "Usage: tm <action> <activity>
+
+    where <action> is one of:
+        start, stop, resume
+
+    and <activity> is any valid string that does not contain commas.";
+    println!("{}", help);
+    std::process::exit(0);
+}
+
 // TODO write meaningful tests for functions performing file system manipulation
 #[cfg(test)]
 mod tests {

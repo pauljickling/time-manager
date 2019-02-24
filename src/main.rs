@@ -13,6 +13,10 @@ fn main() {
         None => panic!("action not specified"),
     };
 
+    if action == "help" {
+        help_text();
+    }
+
     let activity = match activity_arg {
         Some(x) => x.to_string(),
         None => panic!("activity not specified"),
