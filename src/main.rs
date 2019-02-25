@@ -4,6 +4,9 @@ use std::env;
 use tm::*;
 
 fn main() {
+    // creates activity directory if none exists
+    let _check_dir = create_activity_dir();
+
     // env parameters matched or else panic
     let action_arg = env::args().nth(1);
     let activity_arg = env::args().nth(2);

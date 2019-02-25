@@ -4,12 +4,6 @@ Time Manager (tm) is a CLI written in Rust for managing and tracking time spent 
 
 ## Installation
 
-At the moment I don't have binaries available, so you should have Rust [installed](https://www.rust-lang.org/tools/install). I expect to make those available in the future after I have tested the tool on different operating systems.
-
-I will be publishing this on [crates.io](https://crates.io) shortly, and will have instructions for a crates installation once I understand that process.
-
-### Github Installation
-
 Clone this repository into a specified directory.
 
 `git clone https://github.com/pauljickling/time-manager.git`
@@ -18,7 +12,7 @@ After you have installed, change into the directory and run:
 
 `cargo build --release`
 
-This will install an optimized build of the platform. Once you have done that go to the *target/release* folder and create a directory called *activity_logs*. Note that future versions of Time Manager will automatically create this directory.
+This will install an optimized build of the platform. 
 
 ### Create an Alias in your .bashrc File
 

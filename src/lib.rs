@@ -134,6 +134,11 @@ pub fn help_text() {
     std::process::exit(0);
 }
 
+pub fn create_activity_dir() -> std::io::Result<()> {
+    fs::create_dir("/activity_logs")?;
+    Ok(())
+}
+
 // TODO write meaningful tests for functions performing file system manipulation
 #[cfg(test)]
 mod tests {
