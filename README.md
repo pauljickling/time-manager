@@ -22,17 +22,34 @@ For ease of use, I recommend creating an alias in your .bashrc file.
 
 Where `path/to` is the location you installed the time-manager files.
 
-If you have never modified a .bashrc file before you can read about it in *Linux Command Line Fourth Internet Edition* by William Shotts. You can acquire a free copy of the book [here](http://www.linuxcommand.org/tlcl.php/). You can read about the relevant information in Chapter 11.
+If you have never modified a .bashrc file before you can read about it in *Linux Command Line Fourth Internet Edition* by William Shotts. You can acquire a free copy of the book [here](http://www.linuxcommand.org/tlcl.php/), and the relevant information can be found in Chapter 11.
 
 ## Using Time Manager
 
-`tm start {activity}` creates a new csv file with the specified activity
+Time manager accepts two parameters in this order: `tm {action} {activity}`.
 
-`tm stop {activity})` creates a stop record entry for the csv file and adds up the total time spent on the activity since the last entry was recorded
+`tm start {activity}` creates a new csv file with the specified activity.
 
-`tm resume {activity}` creates a resume entry for the csv file
+`tm stop {activity})` creates a stop record entry for the csv file and adds up the total time spent on the activity since the last entry was recorded.
+
+`tm resume {activity}` creates a resume entry for the csv file.
+
+`tm help` lists valid syntax for the Time Manager.
 
 Of course if you have not specified an alias you will need to type in `cargo run` in the correct directory instead.
+
+The {activity} specified will be the name of the csv file.
+
+### Errors Using Time Manager
+
+The following uses of Time Manager are errors that will cause the program to complain:
+
+- Using tm with no specified parameters
+- Using an invalid action parameter
+- Using start as an action parameter for an activity that already exists
+- Using an action parameter that was the last used action for an activity
+
+Note that using a `resume` action after `start` is considered a benign bug, and Time Manager will not complain about it.
 
 ## The CSV files
 
