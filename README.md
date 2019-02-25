@@ -38,7 +38,7 @@ Time manager accepts two parameters in this order: `tm {action} {activity}`.
 
 Of course if you have not specified an alias you will need to type in `cargo run` in the correct directory instead.
 
-The {activity} specified will be the name of the csv file.
+The `{activity}` specified will be the name of the csv file.
 
 ### Errors Using Time Manager
 
