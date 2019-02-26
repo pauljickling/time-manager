@@ -123,6 +123,7 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
     record
 }
 
+/// Provides help text when user provides help parameter
 pub fn help_text() {
     let help = "Usage: tm <action> <activity>
 
@@ -134,8 +135,20 @@ pub fn help_text() {
     std::process::exit(0);
 }
 
+/// Creates an activity_logs directory if it doesn't exist
 pub fn create_activity_dir() -> std::io::Result<()> {
     fs::create_dir("/activity_logs")?;
+    Ok(())
+}
+
+/// Lists existing activities when user provides list parameter
+pub fn list_activity() -> std::io::Result<()> {
+    for entry in fs::read_dir("activity_logs/")? {
+        let file = entry?;
+        let file_slice = file.path().display().to_string();
+        println!("List of activities:");
+        println!("{}", &file_slice[14..]);
+    }
     Ok(())
 }
 
