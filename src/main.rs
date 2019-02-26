@@ -16,10 +16,12 @@ fn main() {
         None => panic!("action not specified"),
     };
 
+    // if first parameter is "help" run help_text() and terminate
     if action == "help" {
         help_text();
     }
 
+    // otherwise activity must be specified
     let activity = match activity_arg {
         Some(x) => x.to_string(),
         None => panic!("activity not specified"),
@@ -35,7 +37,7 @@ fn main() {
     let mut csv_content = read_file(&csv_path);
     let csv_vec = parse_csv(&csv_content);
 
-    // check valid start
+    // check valid start statements
     if csv_vec.len() == 4 {
         if action != "start" {
             panic!("For new activity action must be start");
@@ -48,20 +50,19 @@ fn main() {
         }
     }
 
-    // last action helps figure out how the program should handle the user request
+    // last action is used to see if TM needs to complain about action parameter
     let last_action = &csv_vec[csv_vec.len() - 4];
     if last_action == &action {
         panic!("Last action must be different from current action");
     }
 
-    /* Not ideal for this HashSet to be mutable, but everything else I did created
-    string comparison errors. */
+    // HashSet is used to guarantee correct action parameters
     let mut action_set = HashSet::new();
     action_set.insert("start".to_string());
     action_set.insert("stop".to_string());
     action_set.insert("resume".to_string());
 
-    // checks to make sure a valid action happens, then adds entry
+    // if valid action happens, then tm add an entry
     if action_set.contains(&action) {
         let base_time = &csv_vec[csv_vec.len() - 2];
         let base_hours = &csv_vec[csv_vec.len() - 1];
