@@ -13,7 +13,7 @@ fn main() {
 
     let action = match action_arg {
         Some(x) => x.to_string(),
-        None => panic!("action not specified"),
+        None => "help".to_string(),
     };
 
     // if first parameter is "help" run help_text() and terminate
