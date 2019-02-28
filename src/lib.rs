@@ -125,12 +125,16 @@ pub fn create_record(action: &String, base_time: &String, base_hours: &String) -
 
 /// Provides help text when user provides help parameter
 pub fn help_text() {
-    let help = "Usage: tm <action> <activity>
+    let help = "
+Usage: tm <action> <activity>
 
-    where <action> is one of:
-        start, stop, resume
+where <action> is one of:
+    start, stop, resume
 
-    and <activity> is any valid string that does not contain commas.";
+and <activity> is any valid string that does not contain commas.
+    
+Additionally: 
+    tm list    lists activity csv files";
     println!("{}", help);
     std::process::exit(0);
 }
@@ -146,7 +150,7 @@ pub fn list_activity() -> std::io::Result<()> {
     for entry in fs::read_dir("activity_logs/")? {
         let file = entry?;
         let file_slice = file.path().display().to_string();
-        println!("List of activities:");
+        println!("List of csv files for activities:");
         println!("{}", &file_slice[14..]);
     }
     Ok(())
