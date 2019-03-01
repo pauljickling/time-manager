@@ -1,6 +1,6 @@
 [package]
 name = "tm"
-version = "0.2.4"
+version = "0.3.0"
 authors = ["Paul Jickling <pjickling@gmail.com>"]
 edition = "2018"
 description = "A time manager tool that tracks time spent on specified activities"
@@ -8,4 +8,4 @@ license = "MIT"
 repository = "https://github.com/pauljickling/time-manager"
 
 [dependencies]
-
+dirs = "1.0.5"

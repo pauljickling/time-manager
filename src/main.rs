@@ -34,12 +34,8 @@ fn main() {
     };
 
     // read csv file (or create a new header to be written if no file exists)
-    let path = env::current_dir().unwrap();
-    let path_str = match path.to_str() {
-        Some(x) => x,
-        _ => panic!("Could not retrieve directory path"),
-    };
-    let csv_path = format!("{}/{}.csv", path_str, activity);
+    let path = get_path();
+    let csv_path = format!("{}/{}.csv", path, activity);
     let mut csv_content = read_file(&csv_path);
     let csv_vec = parse_csv(&csv_content);
 

@@ -1,6 +1,8 @@
 use std::fs;
 use std::process::Command;
 
+extern crate dirs;
+
 /// Used for writing a CSV file using the provided path and text
 pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     fs::write(path, text)?;
@@ -17,6 +19,24 @@ pub fn read_file(path: &String) -> String {
         _ => String::from("action, date/time stamp, unix time, hours\n"),
     };
     file
+}
+
+/// Return activity_logs path
+pub fn get_path() -> String {
+    let path = dirs::document_dir().unwrap();
+    let mut path_str = match path.to_str() {
+        Some(x) => String::from(x),
+        _ => panic!("Could not retrieve directory path"),
+    };
+    path_str.push_str("/tm_activity_logs/");
+    path_str
+}
+
+/// Creates an activity_logs directory if it doesn't exist
+pub fn create_activity_dir() -> std::io::Result<()> {
+    let path = get_path();
+    fs::create_dir(path)?;
+    Ok(())
 }
 
 /// Takes string of CSV file and returns a vec for each item.
@@ -135,28 +155,24 @@ and <activity> is any valid string that does not contain commas.
     
 Additionally: 
     tm list    lists activity csv files";
+
     println!("{}", help);
     std::process::exit(0);
 }
 
-/// Creates an activity_logs directory if it doesn't exist
-pub fn create_activity_dir() -> std::io::Result<()> {
-    fs::create_dir("/activity_logs")?;
-    Ok(())
-}
-
 /// Lists existing activities when user provides list parameter
 pub fn list_activity() -> std::io::Result<()> {
-    for entry in fs::read_dir("activity_logs/")? {
+    let path = get_path();
+    println!("List of csv files for activities:\n");
+    for entry in fs::read_dir(path)? {
         let file = entry?;
         let file_slice = file.path().display().to_string();
-        println!("List of csv files for activities:");
-        println!("{}", &file_slice[14..]);
+        println!("{}", &file_slice);
     }
     Ok(())
 }
 
-// TODO write meaningful tests for functions performing file system manipulation
+// Tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -172,5 +188,21 @@ mod tests {
     fn test_get_date() {
         let date = get_date();
         assert_eq!(date, get_date());
+    }
+    #[test]
+    fn test_path() {
+        let docs = dirs::document_dir().unwrap();
+        let mut doc_str = match docs.to_str() {
+            Some(x) => String::from(x),
+            _ => panic!("problem with getting doc path"),
+        };
+        doc_str.push_str("/tm_activity_logs/");
+        let path = get_path();
+        assert!(
+            path == doc_str,
+            "Function was {} and test was {}",
+            path,
+            doc_str
+        );
     }
 }
