@@ -30,7 +30,10 @@ fn main() {
     // otherwise activity must be specified
     let activity = match activity_arg {
         Some(x) => x.to_string(),
-        None => panic!("activity not specified"),
+        None => {
+            eprintln!("activity not specified");
+            std::process::exit(0)
+        }
     };
 
     // read csv file (or create a new header to be written if no file exists)
@@ -42,20 +45,23 @@ fn main() {
     // check valid start statements
     if csv_vec.len() == 4 {
         if action != "start" {
-            panic!("For new activity action must be start");
+            eprintln!("For a new activity action must be start");
+            std::process::exit(0);
         }
     }
 
     if csv_vec.len() > 4 {
         if action == "start" {
-            panic!("Cannot start existing activity");
+            eprintln!("Cannot use start for an existing activity");
+            std::process::exit(0);
         }
     }
 
     // last action is used to see if TM needs to complain about action parameter
     let last_action = &csv_vec[csv_vec.len() - 4];
     if last_action == &action {
-        panic!("Last action must be different from current action");
+        eprintln!("Last action must be different from current action");
+        std::process::exit(0);
     }
 
     // HashSet is used to guarantee correct action parameters
