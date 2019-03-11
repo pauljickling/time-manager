@@ -52,7 +52,9 @@ fn main() {
 
     if csv_vec.len() > 4 {
         if action == "start" {
-            eprintln!("Cannot use start for an existing activity");
+            eprintln!(
+                "Cannot use start for an existing activity.\nTry tm resume <activyt> instead"
+            );
             std::process::exit(0);
         }
     }
