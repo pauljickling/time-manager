@@ -1,6 +1,6 @@
 # Time Manager
 
-Time Manager (tm) is a CLI written in Rust for managing and tracking time spent on specified activities. It outputs a csv file with this data.
+Time Manager (tm) is a CLI written in Rust for managing and tracking time spent on specified activities. It outputs a csv file with this data. Time is measured in 10ths of an hour (i.e. six minutes).
 
 ## Installation
 
