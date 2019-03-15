@@ -34,6 +34,10 @@ Time manager accepts two parameters in this order: `tm {action} {activity}`.
 
 `tm resume {activity}` creates a resume entry for the csv file.
 
+`tm list` displays all the created csv files.
+
+`tm view {activity}` displays a particular csv file.
+
 `tm help` lists valid syntax for the Time Manager.
 
 Of course if you have not specified an alias you will need to type in `cargo run` in the correct directory instead.
