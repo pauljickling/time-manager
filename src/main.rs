@@ -39,6 +39,13 @@ fn main() {
     // read csv file (or create a new header to be written if no file exists)
     let path = get_path();
     let csv_path = format!("{}/{}.csv", path, activity);
+
+    // handle view arguments
+    if action == "view" {
+        view(&csv_path);
+        std::process::exit(0);
+    }
+
     let mut csv_content = read_file(&csv_path);
     let csv_vec = parse_csv(&csv_content);
 

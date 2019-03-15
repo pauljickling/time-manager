@@ -21,6 +21,16 @@ pub fn read_file(path: &String) -> String {
     file
 }
 
+/// Displays the contents of a csv file.
+/// Unlike read_file(), view() simply returns an Error if no file is found
+pub fn view(path: &String) {
+    let contents = fs::read_to_string(path);
+    match contents {
+        Ok(x) => println!("{}", x),
+        _ => eprintln!("No file found with that name"),
+    }
+}
+
 /// Return activity_logs path
 pub fn get_path() -> String {
     let path = dirs::document_dir().unwrap();
@@ -154,7 +164,8 @@ where <action> is one of:
 and <activity> is any valid string that does not contain commas.
     
 Additionally: 
-    tm list    lists activity csv files";
+    tm list             lists activity csv files
+    tm view <activity>  csv file sent to stdout";
 
     println!("{}", help);
     std::process::exit(0);
