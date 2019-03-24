@@ -1,6 +1,6 @@
 [package]
 name = "tm"
-version = "0.3.2"
+version = "0.3.3"
 authors = ["Paul Jickling <pjickling@gmail.com>"]
 edition = "2018"
 description = "A time manager tool that tracks time spent on specified activities"

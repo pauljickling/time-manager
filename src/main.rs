@@ -32,9 +32,14 @@ fn main() {
         Some(x) => x.to_string(),
         None => {
             eprintln!("activity not specified");
-            std::process::exit(0)
+            std::process::exit(0);
         }
     };
+
+    if activity.contains(',') == true {
+        eprintln!("Commas are invalid characters for activity");
+        std::process::exit(0);
+    }
 
     // read csv file (or create a new header to be written if no file exists)
     let path = get_path();
