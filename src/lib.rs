@@ -49,6 +49,19 @@ pub fn create_activity_dir() -> std::io::Result<()> {
     Ok(())
 }
 
+/// Archives specified activities
+pub fn archive(name: &String) -> std::io::Result<()> {
+    let path = dirs::document_dir().unwrap();
+    let mut path_str = match path.to_str() {
+        Some(x) => String::from(x),
+        _ => panic!("Could not retrieve directory path"),
+    };
+    path_str.push_str("/tm_activity_logs/");
+    path_str.push_str(name);
+    fs::create_dir(path_str)?;
+    Ok(())
+}
+
 /// Takes string of CSV file and returns a vec for each item.
 /// The control flow for this is deeply nested and tedious. The purpose is to accomplish the
 /// following:
@@ -215,5 +228,10 @@ mod tests {
             path,
             doc_str
         );
+    }
+    #[test]
+    fn test_archive() {
+        let foo = String::from("foo");
+        archive(&foo);
     }
 }
