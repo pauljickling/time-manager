@@ -49,7 +49,7 @@ pub fn create_activity_dir() -> std::io::Result<()> {
     Ok(())
 }
 
-/// Archives specified activities
+/// TODO: Archives specified activities.
 pub fn archive(name: &String) -> std::io::Result<()> {
     let path = dirs::document_dir().unwrap();
     let mut path_str = match path.to_str() {
