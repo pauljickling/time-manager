@@ -24,6 +24,9 @@ pub fn read_file(path: &String) -> String {
 /// TODO: Remove activities
 pub fn remove() {}
 
+/// TODO: Provide warning for any function that removes things
+pub fn warning() {}
+
 /// Displays the contents of a csv file.
 /// Unlike read_file(), view() simply returns an Error if no file is found
 pub fn view(path: &String) {
