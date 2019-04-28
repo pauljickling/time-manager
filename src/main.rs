@@ -83,7 +83,8 @@ fn main() {
     action_set.insert("start".to_string());
     action_set.insert("stop".to_string());
     action_set.insert("resume".to_string());
-    action_set.insert("remove".to_string());
+    // TODO: add remove action
+    // action_set.insert("remove".to_string());
 
     // if valid action happens, then tm add an entry
     if action_set.contains(&action) {
