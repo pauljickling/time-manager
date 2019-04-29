@@ -21,8 +21,12 @@ pub fn read_file(path: &String) -> String {
     file
 }
 
-/// TODO: Remove activities
-pub fn remove() {}
+/// Removes file specified in parameter
+pub fn remove(path: &str) -> std::io::Result<()> {
+    warning();
+    fs::remove_file(path)?;
+    Ok(())
+}
 
 /// TODO: Provide warning for any function that removes things
 pub fn warning() {}
