@@ -224,6 +224,19 @@ mod tests {
         assert_eq!(date, get_date());
     }
     #[test]
+    fn test_create_record() {
+        let base_time = get_date();
+        let unix_time = get_unix_time();
+        let record1 = format!("start, {}, {}, 0.0\n", base_time, unix_time);
+        let action = String::from("start");
+        println!("{}", base_time);
+        let base_hours = String::from("0.0");
+
+        let record2 = create_record(&action, &base_time, &base_hours);
+
+        assert_eq!(record1, record2);
+    }
+    #[test]
     fn test_path() {
         let docs = dirs::document_dir().unwrap();
         let mut doc_str = match docs.to_str() {
