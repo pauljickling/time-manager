@@ -224,6 +224,27 @@ mod tests {
         assert_eq!(date, get_date());
     }
     #[test]
+    fn test_parse_csv() {
+        let csv_string = String::from(
+            "start, Tue May  7 14:42:28 PDT 2019, 1557265348, 0.0
+stop, Tue May  7 14:43:00 PDT 2019, 1557265380, 0.0
+",
+        );
+        let vec_eval1 = vec![
+            "start",
+            "Tue May  7 14:42:28 PDT 2019",
+            "1557265348",
+            "0.0",
+            "stop",
+            "Tue May  7 14:43:00 PDT 2019",
+            "1557265380",
+            "0.0",
+        ];
+
+        let vec_eval2 = parse_csv(&csv_string);
+        assert_eq!(vec_eval1, vec_eval2);
+    }
+    #[test]
     fn test_create_record() {
         let base_time = get_date();
         let unix_time = get_unix_time();
