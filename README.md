@@ -34,9 +34,9 @@ Time manager accepts two parameters in this order: `tm {action} {activity}`.
 
 `tm resume {activity}` creates a resume entry for the csv file.
 
-`tm list` displays all the created csv files.
+`tm list` displays the names of all the created csv files.
 
-`tm view {activity}` displays a particular csv file.
+`tm view {activity}` displays the contents of a particular csv file.
 
 `tm help` lists valid syntax for the Time Manager.
 
@@ -55,7 +55,7 @@ The following uses of Time Manager are errors that will cause the program to com
 
 Note that using a `resume` action after `start` is considered a benign bug, and Time Manager will not complain about it.
 
-## The CSV files
+## The csv files
 
 The csv files contain four fields:
 
@@ -63,6 +63,8 @@ The csv files contain four fields:
 2. A time/date stamp
 3. A Unix timestamp
 4. Total hours spent on that activity
+
+Time Manager creates a directory in your default Documents directory called `tm_activity` where all the files are written.
 
 ## OS Support
 
