@@ -92,7 +92,7 @@ fn main() {
         let base_hours = &csv_vec[csv_vec.len() - 1];
         let record = create_record(&action, &base_time, &base_hours);
         csv_content.push_str(&record);
-        println!("\n{}", csv_content);
+        println!("{}", csv_content);
         let _result_check = write_file(csv_path, csv_content);
     } else {
         eprintln!("Invalid argument for action.\nstart, stop, and resume are valid arguments");

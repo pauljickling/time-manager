@@ -36,7 +36,7 @@ pub fn warning() {}
 pub fn view(path: &String) {
     let contents = fs::read_to_string(path);
     match contents {
-        Ok(x) => println!("\n{}", x),
+        Ok(x) => println!("{}", x),
         _ => eprintln!("No file found with that name"),
     }
 }
@@ -197,7 +197,7 @@ Additionally:
 /// Lists existing activities when user provides list parameter
 pub fn list_activity() -> std::io::Result<()> {
     let path = get_path();
-    println!("\nList of csv files for activities:\n");
+    println!("List of csv files for activities:");
     for entry in fs::read_dir(path)? {
         let file = entry?;
         let file_slice = file.path().display().to_string();
