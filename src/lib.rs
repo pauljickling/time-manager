@@ -9,9 +9,7 @@ pub fn write_file(path: String, text: String) -> std::io::Result<()> {
     Ok(())
 }
 
-/// Reads file contents from path and either:
-/// 1. Returns contents as a String
-/// 2. If file not found creates header for new file to be written
+/// Reads file contents from path and returns String or new header
 pub fn read_file(path: &String) -> String {
     let contents = fs::read_to_string(path);
     let file = match contents {
@@ -31,8 +29,7 @@ pub fn remove(path: &str) -> std::io::Result<()> {
 /// TODO: Provide warning for any function that removes things
 pub fn warning() {}
 
-/// Displays the contents of a csv file.
-/// Unlike read_file(), view() simply returns an Error if no file is found
+/// Displays the contents of a csv file, or error message if no file found
 pub fn view(path: &String) {
     let contents = fs::read_to_string(path);
     match contents {
@@ -72,7 +69,7 @@ pub fn archive(name: &String) -> std::io::Result<()> {
     Ok(())
 }
 
-/// Takes string of CSV file and returns a vec that contains each item.
+/// Takes string of CSV file and returns a vec of entries.
 /// The control flow for this is deeply nested and tedious. The purpose is to accomplish the
 /// following:
 /// 1. Treat commas as delimiters
