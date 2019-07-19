@@ -72,7 +72,7 @@ pub fn archive(name: &String) -> std::io::Result<()> {
     Ok(())
 }
 
-/// Takes string of CSV file and returns a vec for each item.
+/// Takes string of CSV file and returns a vec that contains each item.
 /// The control flow for this is deeply nested and tedious. The purpose is to accomplish the
 /// following:
 /// 1. Treat commas as delimiters
