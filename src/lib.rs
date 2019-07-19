@@ -103,6 +103,13 @@ pub fn parse_csv(src: &String) -> Vec<String> {
     output
 }
 
+/// Get last item of a Vec to calculate totals
+pub fn get_hrs(csv: Vec<&str>) -> f64 {
+    let final_item = csv.len();
+    let total = csv[final_item - 1].parse::<f64>().unwrap();
+    total
+} 
+
 /// Gets date string from terminal. Provided for human readability in file.
 pub fn get_date() -> String {
     let output = Command::new("date")
@@ -277,5 +284,20 @@ stop, Tue May  7 14:43:00 PDT 2019, 1557265380, 0.0
     fn test_archive() {
         let foo = String::from("foo");
         archive(&foo);
+    }
+    #[test]
+    fn test_get_hrs() {
+        let csv_vec_sample = vec![
+            "start",
+            "Tue May  7 14:42:28 PDT 2019",
+            "1557265348",
+            "0.0",
+            "stop",
+            "Tue May  7 16:43:00 PDT 2019",
+            "1557247380",
+            "2.0",
+        ];
+        let result = get_hrs(csv_vec_sample);
+        assert_eq!(result, 2.0);
     }
 }
