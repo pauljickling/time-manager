@@ -34,7 +34,7 @@ Time manager accepts two parameters in this order: `tm {action} {activity}`.
 
 `tm resume {activity}` creates a resume entry for the csv file.
 
-`tm list` displays the names of all the created csv files.
+`tm list` displays the names of all the created csv files. Also accepts `tm ls`.
 
 `tm view {activity}` displays the contents of a particular csv file.
 
@@ -68,4 +68,4 @@ Time Manager creates a directory in your default Documents directory called `tm_
 
 ## OS Support
 
-This program has been tested on Linux Ubuntu 18.04 LTS, and MacOS Mojave v.10.14.5. It may not work on certain versions of Linux depending on pathing implementation details. Testing on Windows will be forthcoming.
+Time Manager has been tested on MacOS and Linux.
