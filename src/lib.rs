@@ -38,15 +38,6 @@ pub fn view(path: &String) {
     }
 }
 
-/// Displays truncated contents of a csv file, or error message if no file found
-pub fn truncate_view(path: &String) {
-    let contents = fs::read_to_string(path);
-    match contents {
-        Ok(x) => println!("{}", truncate(&x)),
-        _ => eprintln!("No file found with that name"),
-    }
-}
-
 /// Truncate contents of a csv file to last 5 lines
 pub fn truncate(contents: &String) -> String {
     let mut count = 0;
