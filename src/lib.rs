@@ -38,6 +38,9 @@ pub fn view(path: &String) {
     }
 }
 
+/// TODO: Truncate contents of a csv file
+pub fn truncate() {}
+
 /// Return activity_logs path
 pub fn get_path() -> String {
     let path = dirs::document_dir().unwrap();
