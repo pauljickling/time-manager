@@ -38,8 +38,43 @@ pub fn view(path: &String) {
     }
 }
 
-/// TODO: Truncate contents of a csv file
-pub fn truncate() {}
+/// Displays truncated contents of a csv file, or error message if no file found
+pub fn truncate_view(path: &String) {
+    let contents = fs::read_to_string(path);
+    match contents {
+        Ok(x) => println!("{}", truncate(&x)),
+        _ => eprintln!("No file found with that name"),
+    }
+}
+
+/// Truncate contents of a csv file to last 5 lines
+pub fn truncate(contents: &String) -> String {
+    let mut count = 0;
+
+    for i in contents.chars() {
+        if i == '\n' {
+            count += 1;
+        }
+    }
+
+    let truncate_start = count - 5;
+    let mut count2 = 0;
+    let mut truncated_contents = String::from("action, date/time stamp, unix time, hours\n. . .\n");
+    
+    if count > 5 {
+        for i in contents.chars() {
+            if count2 >= truncate_start {
+                truncated_contents.push(i);
+            }
+            if i == '\n' {
+                count2 += 1;
+            }
+       } 
+    } else {
+        truncated_contents = String::from(contents);
+    }
+    truncated_contents
+}
 
 /// Return activity_logs path
 pub fn get_path() -> String {
