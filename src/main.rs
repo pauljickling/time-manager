@@ -7,7 +7,7 @@ fn main() {
     // creates activity directory if none exists
     let _check_dir = create_activity_dir();
 
-    // env parameters matched or else panic
+    // env parameters matched
     let action_arg = env::args().nth(1);
     let activity_arg = env::args().nth(2);
 
@@ -97,6 +97,9 @@ fn main() {
         let record = create_record(&action, &base_time, &base_hours);
         csv_content.push_str(&record);
         println!("{}", truncate(&csv_content));
+        if env::args().len() > 3 {
+            println!("Note that Time Manager only accepts two arguments.");
+        }
         let _result_check = write_file(csv_path, csv_content);
     } else {
         eprintln!("Invalid argument for action.\nstart, stop, and resume are valid arguments");
