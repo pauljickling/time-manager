@@ -225,7 +225,7 @@ dependencies = [
 
 [[package]]
 name = "tm"
-version = "0.3.4"
+version = "0.3.5"
 dependencies = [
  "dirs 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
 ]

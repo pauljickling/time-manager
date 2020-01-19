@@ -234,7 +234,9 @@ pub fn list_activity() -> std::io::Result<()> {
     for entry in fs::read_dir(path)? {
         let file = entry?;
         let file_slice = file.path().display().to_string();
-        println!("{}", &file_slice);
+        if file_slice.contains("csv") == true {
+            println!("{}", &file_slice);
+        }
     }
     Ok(())
 }
