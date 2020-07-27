@@ -241,6 +241,22 @@ pub fn list_activity() -> std::io::Result<()> {
     Ok(())
 }
 
+/// Reads entries of list
+pub fn read_entries() -> std::io::Result<()> {
+    let path = get_path();
+    for entry in fs::read_dir(path)? {
+        let file = entry?;
+        let file_slice = file.path().display().to_string();
+        if file_slice.contains("csv") == true {
+            let contents = fs::read_to_string(file_slice);
+            let unwrapped_contents = contents.unwrap();
+            let truncated_content = truncate(&unwrapped_contents);
+            println!("{}", truncated_content);
+        }
+    }
+    Ok(())
+}
+
 // Tests
 #[cfg(test)]
 mod tests {

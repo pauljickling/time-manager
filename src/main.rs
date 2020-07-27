@@ -30,6 +30,10 @@ fn main() {
         let _list_result = list_activity();
         std::process::exit(0);
     }
+    if action == "test_view" {
+        let _all_entries = read_entries();
+        std::process::exit(0);
+    }
 
     // otherwise activity must be specified
     let activity = match activity_arg {
